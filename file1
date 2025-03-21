@@ -1,0 +1,64 @@
+lass DoublyLinkedList {
+    // Node class for doubly linked list
+    class Node {
+        int data;
+        Node next;
+        Node prev;
+
+        Node(int data) {
+            this.data = data;
+            next = null;
+            prev = null;
+        }
+    }
+
+    private Node head;
+
+    // Constructor
+    public DoublyLinkedList() {
+        head = null;
+    }
+
+    // Add a new node at the end of the list
+    public void append(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+            newNode.prev = temp;
+        }
+    }
+
+    // Print the list in forward direction
+    public void printForward() {
+        if (head == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " <-> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        DoublyLinkedList dll = new DoublyLinkedList();
+
+        // Add nodes to the list
+        dll.append(10);
+        dll.append(20);
+        dll.append(30);
+
+        System.out.println("List in forward direction:");
+        dll.printForward();
+    }
+}
